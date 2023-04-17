@@ -65,6 +65,7 @@ int flatcc_jsonbench_init(flatcc_jsonbench_t *bench)
         FooBar(sibling_create(B,
                 0xABADCAFEABADCAFE + i, 10000 + i, '@' + i, 1000000 + i,
                 123456 + i, 3.14159f + i, 10000 + i));
+
         FooBar(name_create_str(B, "Hello, World!"));
         FooBar(rating_add(B, 3.1415432432445543543 + i));
         FooBar(postfix_add(B, '!' + i));
