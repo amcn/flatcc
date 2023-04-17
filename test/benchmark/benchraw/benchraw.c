@@ -3,7 +3,7 @@
 #define BENCHMARK_BUFSIZ 1000
 #define DECLARE_BENCHMARK(BM)\
     void *BM = 0
-#define CLEAR_BENCHMARK(BM) 
+#define CLEAR_BENCHMARK(BM)
 
 #include <string.h>
 #include <stdint.h>
@@ -91,6 +91,7 @@ int64_t decode(void *bench, void *buffer, size_t size, int64_t sum)
     struct Bar *bar;
 
     (void)bench;
+    (void)size;
 
     foobarcontainer = buffer;
     sum += foobarcontainer->initialized;

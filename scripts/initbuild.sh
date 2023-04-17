@@ -10,6 +10,7 @@ set -e
 HERE=`dirname $0`
 cd $HERE/..
 ROOT=`pwd`
+cd $HERE
 
 CFGFILE=${ROOT}/scripts/build.cfg
 
@@ -27,14 +28,12 @@ if [ -e $CFGFILE ]; then
     . $CFGFILE
 fi
 
-FLATCC_BUILD_GEN=${FLATCC_BUILD_GEN:-Ninja}
-
-echo "initializing build for CMake $FLATCC_BUILD_GEN"
-
 mkdir -p ${ROOT}/build/Debug
 mkdir -p ${ROOT}/build/Release
 rm -rf ${ROOT}/build/Debug/*
 rm -rf ${ROOT}/build/Release/*
 
-cd ${ROOT}/build/Debug && cmake -G "$FLATCC_BUILD_GEN" $FLATCC_BUILD_FLAGS ../.. -DCMAKE_BUILD_TYPE=Debug
-cd ${ROOT}/build/Release && cmake -G "$FLATCC_BUILD_GEN" $FLATCC_BUILD_FLAGS ../.. -DCMAKE_BUILD_TYPE=Release
+echo "initializing build for $FLATCC_BUILD_SYSTEM $FLATCC_BUILD_GEN"
+
+cd ${ROOT}/build/Debug && $FLATCC_BUILD_SYSTEM "$FLATCC_BUILD_GEN" $FLATCC_BUILD_FLAGS ../.. $FLATCC_TARGET_DEBUG
+cd ${ROOT}/build/Release && $FLATCC_BUILD_SYSTEM "$FLATCC_BUILD_GEN" $FLATCC_BUILD_FLAGS ../.. $FLATCC_TARGET_RELEASE
