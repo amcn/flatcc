@@ -45,6 +45,7 @@ endif
 if cc_id == 'mvsc'
 
   has_c99_var_decl = cc_version.version_compare('>=18')
+  c_args += '-W3'
 
 elif cc_id == 'clang'
 
