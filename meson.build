@@ -42,11 +42,10 @@ if buildtype == 'release' or buildtype == 'minsize'
   c_args += '-DNDEBUG'
 endif
 
-message(f'cc_id = @cc_id@')
-if cc_id == 'mvsc'
+if cc_id == 'msvc'
 
   has_c99_var_decl = cc_version.version_compare('>=18')
-  c_args += '/W3'
+  #c_args += '/W3'
 
 elif cc_id == 'clang'
 
