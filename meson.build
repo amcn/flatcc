@@ -151,13 +151,21 @@ if buildtype == 'debug' and cc_id != 'msvc'
   flatcc_name = 'flatcc_d'
 endif
 
-libflatccrt = library(flatccrt_name,
+if build_machine.system() == 'windows'
+  lib_type = 'static_library'
+else
+  lib_type = 'library'
+endif
+
+libflatccrt = build_target(flatccrt_name,
+  target_type: lib_type,
   sources: flatccrt_src,
   include_directories: inc_dir,
   install: not meson.is_subproject()
 )
 
-libflatcc = library(flatcc_name,
+libflatcc = build_target(flatcc_name,
+  target_type: lib_type,
   sources: flatcc_src,
   include_directories: inc_dir,
   install: not meson.is_subproject()
